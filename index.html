@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Thrive Up — AI Pharmacy Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app" class="light">
+    <!-- SIDEBAR -->
+    <aside id="sidebar" class="sidebar">
+      <div class="brand">
+        <div class="logo">🌿</div>
+        <div class="brand-text">
+          <h1>Thrive Up</h1>
+          <small>AI Pharmacy</small>
+        </div>
+      </div>
+
+      <nav class="nav">
+         <i class="fa-solid fa-xmark" onclick="closemenu()"></i>
+        <button data-target="home" class="nav-btn active">Home</button>
+        <button data-target="symptoms" class="nav-btn">Symptom Checker</button>
+        <button data-target="drug-info" class="nav-btn">Drug Info Lookup</button>
+        <button data-target="reminder" class="nav-btn">Medication Reminder</button>
+        <button data-target="assistant" class="nav-btn">AI Assistant</button>
+        <button data-target="settings" class="nav-btn">Settings</button>
+        <i class="fa-solid fa-bars" onclick="openmenu()"></i>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="theme-toggle">
+          <label class="switch">
+            <input type="checkbox" id="theme-checkbox" />
+            <span class="slider"></span>
+          </label>
+          <small id="theme-label">Light</small>
+        </div>
+        <small class="team">Team: ThriveTech</small>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+      <header class="topbar">
+        <div class="search">
+          <input id="quick-search" placeholder="Quick search drugs or symptoms..." />
+        </div>
+        <div class="topbar-right">
+          <div class="user">👩🏽‍⚕ <span>Guest</span></div>
+        </div>
+      </header>
+       
+  
+       
+
+      <section id="content">
+        <!-- HOME -->
+        <section id="home" class="page active-page">
+          <div class="grid">
+            <div class="card">
+              <h3>Welcome to Thrive Up</h3>
+              <p>Your AI-powered pharmacy companion — check symptoms, lookup drug info, and set reminders.</p>
+            </div>
+
+            <div class="card stats">
+              <h4>Quick Actions</h4>
+              <div class="actions">
+                <button id="jump-symptom" class="btn">Run Symptom Checker</button>
+                <button id="jump-drug" class="btn ghost">Lookup a Drug</button>
+              </div>
+            </div>
+
+            <div class="card">
+              <h4>Reminders</h4>
+              <ul id="mini-reminders" class="reminder-mini"></ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- SYMPTOM CHECKER -->
+        <section id="symptoms" class="page">
+          <div class="page-header">
+            <h2>Symptom Checker</h2>
+            <p>Type a symptom and get suggestion.</p>
+          </div>
+
+          <div class="card wide">
+            <div class="form-row">
+              <input id="symptom-input" placeholder="e.g., headache, fever, sore throat..." />
+              <button id="symptom-check" class="btn">Check</button>
+            </div>
+            <div id="symptom-output" class="result-area"></div>
+          </div>
+        </section>
+
+        <!-- DRUG INFO -->
+        <section id="drug-info" class="page">
+          <div class="page-header">
+            <h2>Drug Info Lookup</h2>
+            <p>Search our drug database. Replace with backend endpoint later.</p>
+          </div>
+
+          <div class="card wide">
+            <div class="form-row">
+              <input id="drug-input" placeholder="Enter drug name (e.g., paracetamol)" />
+              <button id="drug-search" class="btn">Search</button>
+            </div>
+
+            <div id="drug-results" class="cards-grid"></div>
+          </div>
+        </section>
+
+        <!-- REMINDER -->
+        <section id="reminder" class="page">
+          <div class="page-header">
+            <h2>Medication Reminder</h2>
+            <p>Set reminders — stored locally (localStorage).</p>
+          </div>
+
+          <div class="card wide">
+            <div class="form-row wrap">
+              <input id="rem-med" placeholder="Medication name" />
+              <input id="rem-time" type="time" />
+              <button id="rem-set" class="btn">Set Reminder</button>
+            </div>
+
+            <ul id="rem-list" class="reminder-list"></ul>
+          </div>
+        </section>
+
+        <!-- ASSISTANT (info) -->
+        <section id="assistant" class="page">
+          <div class="page-header">
+            <h2>AI Assistant</h2>
+            <p>Interactive assistant bubble is available on the site. Try typing keywords like <em>symptom</em> or <em>reminder</em>.</p>
+          </div>
+
+          <div class="card wide">
+            <p class="muted">This page has quick tips and shortcuts your assistant can use to jump to sections.</p>
+            <div class="shortcuts">
+              <button class="chip" data-target="symptoms">Open Symptom Checker</button>
+              <button class="chip" data-target="drug-info">Open Drug Lookup</button>
+              <button class="chip" data-target="reminder">Open Reminders</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- SETTINGS -->
+        <section id="settings" class="page">
+          <div class="page-header">
+            <h2>Settings</h2>
+            <p>Frontend options. Backend would store per-user preferences.</p>
+          </div>
+
+          <div class="card wide">
+            <h4>Theme</h4>
+            <p>Use the toggle in the sidebar to switch between light and dark.</p>
+          </div>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <!-- Floating Assistant -->
+  <!-- <div id="ai-assistant">
+    <div id="assistant-bubble">🤖</div>
+    <div id="assistant-panel" class="hidden">
+      <div id="assistant-messages" class="assistant-messages">
+        <div class="assistant-msg">Hello! I can jump to sections: try "symptom", "drug", or "reminder".</div>
+      </div>
+      <div class="assistant-input-row">
+        <input id="assistant-input" placeholder="Ask (e.g., symptom, drug, reminder)..." />
+        <button id="assistant-send" class="btn">Send</button>
+      </div>
+    </div>
+  </div> -->
+
+  <script src="script.js"></script>
+</body>
+</html>
